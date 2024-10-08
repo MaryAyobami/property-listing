@@ -51,7 +51,7 @@ def generate_description(property, templates):
     description_template = description_template.replace('[bedrooms]', '{bedrooms}').replace('[location]', '{location}')
     description = description_template.format(
         bedrooms=property['bedrooms'],
-        location=property['state'],
+        location=property['address'],
     )
     return description
 
