@@ -1,0 +1,6 @@
+requests
+flask
+mysql-connector-python
+bs4
+lxml
+

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Updated Properties</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        li strong {
+            color: #555;
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background-color: #ccc;
+            margin: 20px 0;
+        }
+        .price {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .flash-message {
+            padding: 10px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Updated Properties</h1>
+
+    <!-- Flash Message Section -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-message">
+                {% for category, message in messages %}
+                    <p class="{{ category }}">{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <ul>
+        {% for property in properties %}
+        <li>
+            <strong>ID:</strong> {{ property['id'] }}<br>
+            <strong>Type:</strong> {{ property['type'] }}<br>
+            <strong>Location:</strong> {{ property['state'] }}<br>
+            <strong>Bedrooms:</strong> {{ property['bedrooms'] }}<br>
+            <strong>Description:</strong> {{ property['description'] }}<br>
+            <strong>Price:</strong> <span class="price">₦{{ "{:,.0f}".format(property['price']) }}</span> <!-- Format price with commas -->
+        </li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

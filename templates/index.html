@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Projects</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        select {
+            width: 100%;
+            height: 350px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .success-message {
+            color: green;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Select Projects</h1>
+
+    <!-- Form to select multiple projects and submit for updating properties -->
+    <form action="{{ url_for('update_properties') }}" method="POST">
+        <label for="projects">Choose projects:</label>
+        <select id="projects" name="projects" multiple>
+            {% for project in projects %}
+                <option value="{{ project['id'] }}">{{ project['projectName'] }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <button type="submit">Update Properties</button>
+    </form>
+
+    <!-- Success notification -->
+    {% if success %}
+        <p class="success-message">Properties have been successfully updated!</p>
+    {% endif %}
+</body>
+</html>
